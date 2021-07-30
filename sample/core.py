@@ -38,29 +38,38 @@ options['The Unlicense'] = 'The Unlicense'
 # Let user select an option
 option = selectFromDict(options, 'License')
 
-def licenseInfo():
+def licenseBadge():
     if option == 'Mozzila Public License 2.0':
         badge = '[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)]'
-        licenseURL = 'https://opensource.org/licenses/MPL-2.0'
-    
     if option == 'Appache 2.0 License':
         badge = '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)]'
-        licenseURL = 'https://opensource.org/licenses/Apache-2.0'
-
     if option == 'The MIT License':
         badge = '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]'
-        licenseURL = 'https://opensource.org/licenses/MIT'
-
     if option == 'Boost Software License 1.0':
         badge = '[![License](https://img.shields.io/badge/License-Boost%201.0-lightblue.svg)]'
-        licenseURL = 'https://www.boost.org/LICENSE_1_0.txt'
-
     if option == 'The Unlicense':
         badge = '[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)]'
-        licenseURL = 'http://unlicense.org/'
-    return (badge, licenseURL)
+        # licenseURL = 'http://unlicense.org/'
+    return badge
 
-badge = licenseInfo()
+badge = licenseBadge()
+
+def defineLicenseURL():
+    if option == 'Mozzila Public License 2.0':
+        licenseURL = 'https://opensource.org/licenses/MPL-2.0'
+    if option == 'Appache 2.0 License':
+        licenseURL = 'https://opensource.org/licenses/Apache-2.0'
+    if option == 'The MIT License':
+        licenseURL = 'https://opensource.org/licenses/MIT'
+    if option == 'Boost Software License 1.0':
+        licenseURL = 'https://www.boost.org/LICENSE_1_0.txt'
+    if option == 'The Unlicense':
+        licenseURL = 'http://unlicense.org/'
+    return licenseURL
+
+licenseURL = defineLicenseURL()
+   
+    
 
 def markDown():
     f = open("readMe.md", "r+")
@@ -90,7 +99,7 @@ f'''# {title}
 
 ## License
 {option}
-Please review [data.licenseURL](data.licenseURL) to understand the license.
+Please review [{licenseURL}]({licenseURL}) to understand the license.
 
 ## Contributing
 {contributors}
@@ -101,7 +110,7 @@ Please review [data.licenseURL](data.licenseURL) to understand the license.
 ## Questions
 Come checkout my Github!
 
-{github}(https://www.github/{github})
+{github}(https://github.com/{github})
 
 And if you have any questions you can e-mail me at:
 [{email}]({email})
